@@ -62,7 +62,7 @@ a:active {
   color: #fff;
 }
 
-button{
+button .openbutton{
   background-color: #18121e;
   float: left;
   color: #bbb;

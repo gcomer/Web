@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>Gabriel Comer's Website</title>
+  </head>
+  <body>
+    <script src="./sidebar.js"></script>
+    <script>
+      function calculateTime()
+      {
+        start = document.getElementById("start-time").value;
+        end = document.getElementById("end-time").value;
+        if(!start || !end)
+        {
+          alert("Both time fields are required!!!");
+          return 0;
+        }
+
+        start_hours = parseInt(start.substring(0,2));
+        start_minutes = parseInt(start.substring(3));
+        end_hours = parseInt(end.substring(0,2));
+        end_minutes = parseInt(end.substring(3));
+        if(end < start)
+        {
+          minutes = 60 - start_minutes + end_minutes;
+          start_hours += 1;
+          hours = 24 - start_hours + end_hours;
+        }
+        else
+        {
+          minutes = 60 - start_minutes + end_minutes;
+          start_hours += 1;
+          hours = end_hours - start_hours;
+        }
+        if( minutes >= 60)
+        {
+          hours += 1;
+          minutes -= 60;
+        }
+        console.log("Elapsed hours: " + hours);
+        console.log("Elapsed minutes: " + minutes);
+        console.log("Start time: " + start);
+        console.log("End time: " + end);
+        document.getElementById("result").innerHTML = hours + " hour(s) and " + minutes + " minute(s).";
+      }
+    </script>
+    <nav class="sidebar">
+      <ul>
+        <li><a href="javascript:void(0)" class="closebutton" onclick="closeNav()" style="text-align: right; font-size: 2em;">&times;</a></li>
+        <li><a href="./resume.html">Résumé</a></li>
+        <li><a href="./about.html">About Me</a></li>
+        <li><a href="./bezier_curve.html">Bézier Curve demo</a></li>
+        <li><a href="./bezier_patch.html">Bézier Patch demo</a></li>
+      </ul>
+    </nav>
+    <button class="openbutton" onclick="openNav()">&#9776;</button>
+    <div class="content">
+      <header>
+        <h1>Gabriel Comer's Website</h1>
+        <h2>Homepage</h2>
+      </header>
+    <hr />
+    </div>
+    <div class="content">
+      <form>
+        <label for="start-time">Clocked In:</label>
+        <input type="time" id="start-time">
+        <br/>
+        <label for="end-time">Clocked Out:</label>
+        <input type="time" id="end-time">
+        <br/>
+      </form>
+      <button onclick="calculateTime()">Get Time</button>
+      <p id="result">0 hour(s), 0 minute(s)</p>
+    </div>
+    <div class="content">
+      <footer>
+        <p>Posted by Gabriel Comer<br>
+        Email me at gabe.comer7@gmail.com <br>
+        <a href="mailto:gabe.comer7@gmail.com?subject=You're hired!">Hire me!</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
